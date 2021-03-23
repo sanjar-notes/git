@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-09T05:03:42+05:30
+
+====== 3. Reset to a Commit ======
+Created Monday 09 November 2020
+
+* Reset means to get rid of some work and start again.
+* Resetting is different from reverting. It actually //erases //all successive commits.
+{{./pasted_image.png}}
+* If a commit is not in the repo, its content is gone.
+* When we reset to a commit, all successive commits are trashed.
+
+===== 'git reset' Command =====
+{{{code: lang="sh" linenumbers="True"
+git reset SHA_id #SHA_id becomes the starting point
+}}}
+	
+When a commit is reset, its data can to be transferred to three regions, determined by three options:
+* --soft - No change in worktree and indexw
+* --mixed - Only index is reset.
+* --hard - Both worktree and index are reset.
+
+MAID - keep in mind that WD is safe except in --hard.
+The default option for reset is --mixed. You'll lose the WD.

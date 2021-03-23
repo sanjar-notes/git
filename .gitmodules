@@ -1,0 +1,6 @@
+[submodule "1._Basic_Git/example_repos/git_basics_till_merging"]
+	path = 1._Basic_Git/example_repos/git_basics_till_merging
+	url = https://github.com/exemplar-codes/git_basics_till_merging.git
+[submodule "1._Basic_Git/example_repos/git_branching"]
+	path = 1._Basic_Git/example_repos/git_branching
+	url = https://github.com/exemplar-codes/git_branching_resetting.git

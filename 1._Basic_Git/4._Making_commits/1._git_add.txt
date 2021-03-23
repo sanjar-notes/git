@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-07T06:41:32+05:30
+
+====== 1. git add ======
+Created Saturday 07 November 2020
+
+* If we do git status after creating some files. Git says the new files are untracked.
+{{./pasted_image.png}}
+* Making a commit requires the files to be 'staged' first. The **''git add''** command is used to move files from the Working Directory to the Staging Index.
+* Git has 3 areas at any point in time: the working directory(what you can see), the staging area(or index) and the repository.
+
+===== git add =====
+{{{code: lang="sh" linenumbers="True"
+git add index.html #staging the file
+}}}
+
+
+Result
+	{{./pasted_image001.png}}
+* The 'changes to be committed' refers to the files which have been staged but not committed.
+* Unstage file(s) - '**git rm --cached filename**" command. Nothing changes in the working directory.
+
+**Notes:**
+* git add can take multiple files as argument.
+* To avoid verbosity, just do **git add .** to stage all files. A better option is 'git add -A', because it works even if you're not in the root directory.
+* Staging is required for each commit, even if the same files were committed previously; the staging area is cleared after each commit.
+* Any changes(edit, rename, delete) made to a file don't affect its copy in the staging area.
+	{{./pasted_image002.png}}

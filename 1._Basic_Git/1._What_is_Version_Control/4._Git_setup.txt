@@ -1,0 +1,30 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-06T11:02:34+05:30
+
+====== 4. Git setup ======
+Created Friday 06 November 2020
+
+1. Install Git from the official website
+2. Setup Git variables in the terminal or git shell(in Windows)
+{{{code: lang="sh" linenumbers="True"
+# sets up Git with your name
+git config --global user.name "<Your-Full-Name>"
+
+# sets up Git with your email
+git config --global user.email "<your-email-address>"
+
+# makes sure that Git output is colored
+git config --global color.ui auto
+
+# displays the original state in a conflict
+git config --global merge.conflictstyle diff3
+
+git config --list
+}}}
+
+3. Setup the code editor - VSCode in this case
+{{{code: lang="sh" linenumbers="True"
+git config --global core.editor "code --wait"
+}}}
+

@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-06T12:23:13+05:30
+
+====== 3. status of a repo ======
+Created Friday 06 November 2020
+
+**How do we know what Git has done, or if it is ready for more commands?**
+Using the 'git status' command. 'git status' is our key to the mind of Git.
+* 'git status' is like 'ls', we can use it to see if something has changed in the directory.
+--------------------
+* running 'git status' tells us many things. Some important ones are:
+	1. the branch we are on
+	2. whether it is up to date with 'origin/master', i.e shows the changes w.r.t the original repo
+	3. Shows if there's something to add(to the staging area) or if things are to be committed.

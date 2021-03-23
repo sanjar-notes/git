@@ -1,0 +1,85 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2021-02-20T08:03:40+05:30
+
+====== 2. Part 2 - State ======
+Created Saturday 20 February 2021
+
+=== Setting revision(state) for the submodule ===
+**Info**
+	* A Git repository has many branches, each having many commits. Also, at any point in time, there can be only one version's files in the working directory. This corresponds to the HEAD of the branch that the repo's currently at.
+	* But a branch(i.e its HEAD) is not static: it changes with commits. This behavior is unacceptable for repos being used as submodules, because the root folder needs to be sure of the submodule's content. This is why it's crucial to specify a specific commit, and not a branch for a submodule: the chosen commit determines the content of the submodule directory, guaranteeing that the correct code is always present. The chosen commit can be thought of as the "state" of the submodule.
+	* By default, the commit which is HEAD is set as the "state" of the submodule.
+	* If the "state" and HEAD are not the same, doing ''git status'' inside the submodule will show "''HEAD detached'' at some_state". Normally, in Git, you always have a certain branch checked out. However, you can also choose to check out a specific commit (one that is not the tip of a branch). This is a rather rare case in Git and should normally be avoided. But this is **normal** for submodules, as we need to specify the "state".
+	* This means that all submodules are static, very static to the parent submodule(s).
+**Steps**
+* To set a submodule's state - go inside the submodule directory and check it out(''checkout'') using the SHA_ID of the commit you want.
+{{{code: lang="sh" linenumbers="True"
+#inside the submodule
+git checkout 3557a0e0f
+}}}
+
+* You need to ''commit''(in the root repo) after setting the "state" of a submodule. You don't have to ''add'' anything.
+* You don't have to mention ''submodule'' anyhere during ''checkout'' or ''add'', as both of them are in the correct context: one for the submodule and the other for the parent.
+* To check what the parent repo thinks of the changes, do ''git submodule status''. 
+{{{code: lang="sh" linenumbers="True"
+$ git submodule status
+ e1d9359d3a21ee8ded215c04cf4da2b04e283977 lib/ToProgress (e1d9359)
+}}}
+
+
+=== Checking for upstream changes in a submodule ===
+* Change to the submodule folder and do the usual ''fetch''
+* For ''pull''ing the changes, you'll have to use the full form of ''pull'', specifying the reciveing branch . This is because we are(mostly) on a detached HEAD which is not considered a concrete branch to ''pull'' commits to.
+{{{code: lang="sh" linenumbers="True"
+cd my_submdoule
+git pull origin master
+}}}
+
+* This will update the submodule but won't change the submodule's state(i.e you'll still be on some detached HEAD), i.e you can update the submodule without worrying about the "state" being changed.
+
+=== Updating a submodule when its pointer was moved ===
+You can find if the state of a submodule changed like so:
+{{{code: lang="sh" linenumbers="True"
+$ git submodule status
++3557a0e0f7280fb3aba18fb9035d204c7de6344f   lib/ToProgress (0.1.1)
+}}}
+
+* What happens if the state of the submodule changes, this can happen in two ways:
+	a. You update the submodule(locally) - Nothing happens, the "state" remains the same, even though the submodule has updated. If you wish to change the "state", you can do so by checking out the submodule to HEAD.
+{{{code: lang="sh" linenumbers="True"
+cd submodule_dir
+git checkout HEAD
+git commit - "changed state"
+}}}
+
+	b. Some team-member changes state of the submodule(whether the submodule has changed is irrelevant) - nothing happens.
+		* We get to know that the submodule state changed on doing ''pull'', ''merge'' or ''rebase'' in the parent repo. All code except the submodule(s) gets updated as usual. The submodules are still fetched, however.
+		* If you wish to get even with your friend regarding the submodule state, use the ''update'' command. This sets the "state" to be the same as our friend. Git downloads the corresponding revision files too, if the new state requires them and you don't have them. ''update'' is a handy tool because it ensures that the state is correctly set and the correct code is present.
+{{{code: lang="sh" linenumbers="True"
+git submodule update my_submodule_fullName # updates the state, and downloads any changes required by the new state that you don't possess
+}}}
+
+		* If you wish to update all submodules but keep the state intact, do this in the root repo. 
+{{{code: lang="sh" linenumbers="True"
+git pull --recurse-submodules # updates all submodule but not the state
+}}}
+
+		We have already seen how to do this for a single submodule: just go inside and ''pull''.
+		You must use the ''--init'' option too, in case the root repo's remote added new submodules.
+{{{code: lang="sh" linenumbers="True"
+git pull --recurse-submodules --init
+}}}
+
+		* If you wish to update all submodules and also set their state to their latest version(i.e remote branch's HEAD), do this.
+{{{code: lang="sh" linenumbers="True"
+git submodule update --remote
+}}}
+
+
+Note: 
+* ''submodule update'' has 3 modes:
+	a. If nothing is specified it will update state of all submodules as per the root repo and make sure the correct code is present(by downloading changes if required).
+	b. If ''--remote'' is specified, the state is set to the remote's head. Obviously, all changes are downloaded because the state is the latest.
+	c. If some module(s) is specified, the update applies only to it.
+	d. If the command is run when inside a submodule, only the submodule gets updated.

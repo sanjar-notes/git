@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-07T06:02:11+05:30
+
+====== 4. Viewing a specific commit ======
+Created Saturday 07 November 2020
+
+Until now, if we needed info on a specific commit, we did this:
+1. Scroll - impractical
+2. grep - not good because number of lines are unknown. Also the coloring is lost.
+
+None of this is a good idea. To solve this problem, git has another command.
+
+===== git show =====
+* **git show** takes a SHA_id of commit as its argument. It displays information only about the specified commit.
+{{{code: lang="sh" linenumbers="True"
+git show fdf5493
+}}}
+
+* By default, --patch is enabled.
+* It supports the --stat, -w options.
+

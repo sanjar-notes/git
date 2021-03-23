@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-11-07T10:59:11+05:30
+
+====== 3. git diff ======
+Created Saturday 07 November 2020
+
+* Display changes in the working directory. Works **only** for modified files that haven't been staged.
+* Tracks soft changes.
+This is done using the 'git diff' command.
+* --stat and -p, both are available here.
