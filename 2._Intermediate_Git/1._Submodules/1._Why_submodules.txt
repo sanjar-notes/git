@@ -8,7 +8,7 @@ Created Saturday 20 February 2021
 === My motivation(s) for learning submodules ===
 
 == Situation 1 ==
-* I am learning to app development in Android and I take notes in [[https://zim-wiki.org/|zim-wiki]], which I track with Git. Additionally, I wish keep the app projects(repos themselves) in the notes directory. This amounts to nesting the app repos inside the notebook repo. 
+* I am learning app development in Android and I take notes in [[https://zim-wiki.org/|zim-wiki]], which I track with Git. Additionally, I wish keep the app projects(repos themselves) in the notes directory. This amounts to nesting the app repos inside the notebook repo. 
 * **Question**: Is Git okay with this? Short answer - no, Git is not okay with nesting.
 * I have realized that doing so results in an ambiguous situation for Git:
 1. Should it track everything, including the app repo's ''.git'' folder?
