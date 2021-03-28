@@ -6,8 +6,8 @@ Creation-Date: 2021-02-20T04:25:50+05:30
 Created Saturday 20 February 2021
 
 === What is a submodule ===
-* A 'Submodule' is just like a normal Git repository, except it is "Git approved" nested repo. Simply put - Submodules refers to nested repos.
-* A Submodule remains a fully functional Git repository: you can modify files, commit, pull, push, etc. from inside it like with any other repository.
+* A 'Submodule' is a normal Git repository, with a single addition: it is a "Git approved" nested repo. Simply put - A Submodule is a nested repo Git is okay with.
+* A Submodule remains a fully functional Git repository: you can modify files, commit, pull, push, etc. from inside it.
 * A submodule can be located anywhere in a parent Git repository’s working directory and is configured via a ''.gitmodules'' file located at the root of the parent repository.
 * Git allows you to work in submodules(nested repositories) independent of the parent repo.
 
