@@ -38,5 +38,5 @@ Note: Keep the goal of each commit as atomic as possible.
 * Syntax: ''git commit -a'' or ''git commit -a -m "message here"''.
 * Gotchas:
 	* This works for tracked files only. A file is "tracked" by Git if it has been commited in the past.
-	* For untracked files, you still need to stage them using ''git add''.
-	This is the reason why ''git commit -a'' is not equivalent to ''git add -A; git commit''.
+	* You still need to stage untracked files using ''git add''. Untracked files - Files that have been commited.
+	This is the reason why ''git commit -a'' is not equivalent to ''git add -A; git commit'', except for tracked files.
