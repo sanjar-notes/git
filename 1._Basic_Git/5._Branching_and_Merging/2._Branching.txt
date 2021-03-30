@@ -7,9 +7,19 @@ Created Saturday 07 November 2020
 
 Jargon:
 * MASTER - the default branch, created by git
-* HEAD - points to the latest commit on the current branch. There's only one HEAD pointer. Used for navigation around branches.
+* HEAD - a pointer variable used by the repo. By default, it points to the latest commit on the current branch.
 * Every branch's HEAD pointer actually points to the latest commit in that branch. __Redundant__
 {{./pasted_image.png}}
+
+=== More about HEAD(optional) ===
+* Purpose of HEAD - act as bookmark/state of the repo.
+* When you switch to a branch, HEAD points to the latest commit in that branch.
+
+//Skip this// if learning Git for the first time.
+* HEAD can be made to point to a older commit. The repo is now said to have a "detached-HEAD".
+* Moving(or pointing) the HEAD to a commit has no effect on the repo or files, because it's just a pointer variable.
+* HEAD is relevant only to the repo area. It is irrelevant to the staging area and working directory.
+Think of HEAD as the //slider// in a progess bar. By default, it points to the end. Moving it doesn't affect the video.
 
 --------------------
 **Commands**
@@ -19,9 +29,10 @@ git branch new_branch_name # creates branch from latest commit of the current br
 git branch new_branch_name SHA_ID # creates branch from the given commit of the current branch
 git branch new_branch source_branch
 }}}
-	
-	We need to manually switch to the new branch before we start working on it.
-* How to switch to a branch
+
+
+Note: Git doesn't switch automatically to the new branch. However, there is a shortcut to do so.
+* Switch to a branch
 {{{code: lang="sh" linenumbers="True"
 git checkout destination_branch_name # HEAD now points to destination_branch_name
 }}}
@@ -29,15 +40,16 @@ git checkout destination_branch_name # HEAD now points to destination_branch_nam
 * List all branches
 {{{code: lang="sh" linenumbers="True"
 git branch # show a list of all branches
-# current branch is marked with an asterisk(*)
 }}}
-	
+
+Note: The branch is marked with an asterisk(*).
+
 * Delete a branch
 {{{code: lang="sh" linenumbers="True"
 git branch -D branch_name # deletes the branch and brings us to the MASTER, if we are on the deletend
 }}}
 	
-* Create branch and switch - in one command
+* Shorctut to create and switch to the new branch - in one command
 {{{code: lang="sh" linenumbers="True"
 git checkout -b new_branch_name
 }}}
