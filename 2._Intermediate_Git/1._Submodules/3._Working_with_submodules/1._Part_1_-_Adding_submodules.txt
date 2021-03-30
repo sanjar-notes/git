@@ -52,10 +52,11 @@ git restore --staged ../.gitmodules submodule_name_with_path
 	b. Populate all submodules after cloning. Run ''git submodule update --init --recursive'' after cloning.
 	c. Populate specific submodules: Go to a submodule's working directory(it is empty). Run ''git submodule init''(this will initialize the local configuration file) and then run ''git submodule update''. Result: Contents download and are set to the correct state, as recorded by the root repo.
 
-=== Create/add a local repo submodule, without URL ===
-Suppose you have a repo(let's call it Garage). You wish to add/create a local repo/folder(named Car) as submodule.
+=== Add/create a repo submodule, without URL ===
+Suppose you have a repo(named Garage). You wish to add(or create) a local repo/folder(named Car) as submodule.
 It's pretty simple. Steps:
-1. Move/Create Car into Garage. You can use ''git init'' if it's not a repo yet.
-2. Make sure Car has atleast one commit. If it's a new repo, go //inside// Car to make a commit.
+1. Move/Create Car into Garage. Use ''git init'' if Car is not a repo or doesn't exist yet.
+2. Make sure Car has atleast one commit. If it has none, go inside it and make one.
 3. Move back to Garage and add Car as a submodule, like so: ''git submodule add path_to_Car''. The path can be absolute or relative(use ''./'' w) from Garage.
 4. Stage and commit.
+Done!!
