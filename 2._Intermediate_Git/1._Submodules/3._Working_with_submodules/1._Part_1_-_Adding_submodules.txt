@@ -5,19 +5,20 @@ Creation-Date: 2021-02-20T08:03:36+05:30
 ====== 1. Part 1 - Adding submodules ======
 Created Saturday 20 February 2021
 
-=== Adding an existing repo as submodule ===
+=== Add a repo as submodule, from URL ===
 * Go to the project repo.
-* To add the submodule: specify the context after ''git'' keyword, like so:
+* To add the submodule: specify the context(''submodule'') after ''git'' keyword, like so:
 {{{code: lang="sh" linenumbers="True"
 git submodule add repo_URL
 # example
 git submodule add https://github.com/djyde/ToProgress
 
-# you can also specify the path where the submodule needs to be added. If path is a single name, then it will become the submodule's name 
+# optionally specify - path for the submodule/
+# you can specify the name for the submodule - in the path.
 git submodule add repo_URL path
 }}}
 
-* Result: The submodule will be cloned. Check status.
+* Result: The submodule is cloned. Check status.
 {{{code: lang="sh" linenumbers="True"
 $ git status
 On branch master
@@ -28,12 +29,12 @@ Changes not staged for commit:
 	modified:   lib/ToProgress (new commits)
 }}}
 
-* Although the parent repo does not track the submodules contents, you still need to ''commit'' the act of adding the submodule to the parent repo. Tangibly the ''.gitmodule'' file has been changed(or created in this case), which is staged automatically.
+* Although the parent repo does not track the submodules content, you still need to ''commit'' the act of adding the submodule. The ''.gitmodule'' file is created(or changed), and is staged automatically, only because this is the first time.
 {{{code: lang="sh" linenumbers="True"
-git commit -m "Add submodule"
+git commit -m "Add submodule reactjs"
 }}}
 
-* If you added the submodule by mistake, you set things right by doing this
+* If you added the submodule by mistake, do this:
 {{{code: lang="sh" linenumbers="True"
 
 • Although the parent repo does not track the submodules contents, you still need to commit the act of adding the submodule to the parent repo. Tangibly the .gitmodule file has changed, which is staged automatically.
@@ -44,12 +45,17 @@ git restore --staged ../.gitmodules submodule_name_with_path
 }}}
 
 
-=== Cloning a project having submodules ===
-As the root repo only keeps //configurations// and does not track submodules, it only creates empty submodule directories when the root repo is cloned.
-* There are 3 options here:
+=== Clone a project with its submodules ===
+* As the root repo only keeps //configurations// and does not track submodules, the working directory for submodules are empty after cloning.
+* There are 3 ways to proceed:
 	a. Populate all submodules while cloning. Just add ''--recursive-submodules'' option to ''git clone''
-	b. Populate all submodules after cloning. This is done by running git ''submodule update --init --recursive''
-	c. For specific submodules: Go to the empty directory. Run ''git submodule init''(this will initialize the local configuration file) and then run ''git submodule update''. This will download the submodule content and set its state correctly, as recorded by the root repo.
+	b. Populate all submodules after cloning. Run ''git submodule update --init --recursive'' after cloning.
+	c. Populate specific submodules: Go to a submodule's working directory(it is empty). Run ''git submodule init''(this will initialize the local configuration file) and then run ''git submodule update''. Result: Contents download and are set to the correct state, as recorded by the root repo.
 
-=== Adding local repos as submodules ===
-TODO
+=== Create/add a local repo submodule, without URL ===
+Suppose you have a repo(let's call it Garage). You wish to add/create a local repo/folder(named Car) as submodule.
+It's pretty simple. Steps:
+1. Move/Create Car into Garage. You can use ''git init'' if it's not a repo yet.
+2. Make sure Car has atleast one commit. If it's a new repo, go //inside// Car to make a commit.
+3. Move back to Garage and add Car as a submodule, like so: ''git submodule add path_to_Car''. The path can be absolute or relative(use ''./'' w) from Garage.
+4. Stage and commit.

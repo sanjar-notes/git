@@ -6,25 +6,26 @@ Creation-Date: 2021-02-20T04:25:50+05:30
 Created Saturday 20 February 2021
 
 === What is a submodule ===
-* A 'Submodule' is a normal Git repository, with a single addition: it is a "Git approved" nested repo. Simply put - A Submodule is a nested repo Git is okay with.
+* A Submodule is a nested repo that Git is okay with.
 * A Submodule remains a fully functional Git repository: you can modify files, commit, pull, push, etc. from inside it.
-* A submodule can be located anywhere in a parent Git repository’s working directory and is configured via a ''.gitmodules'' file located at the root of the parent repository.
-* Git allows you to work in submodules(nested repositories) independent of the parent repo.
+* Submodules can be located anywhere in the parent Git repository’s working directory.
+* A ''.gitmodules'' file in the parent stores the configuration of the submodules.
+* The submodule and parent's history are independent, you can work //in// one without affecting the other.
 
 Note: If you are reading these notes for the first time, skip to [[3. Working with submodules|this]], then come back and continue.
 
 === Submodule's behavior ===
-* **Repo-data**: The ''.git''(repo's data) folder of a sumodule doesn't actually reside within it. It is kept inside the top-level repo's ''.git/modules/''
-* **Recognizing a submodule**: A submodule has a ''.git'' file, which is just a label for "I am a submodule". This file just has 1 thing: location of the submodule's VC directory, as mentioned above.
-* **Manipulation**: Git commands are context-sensitive! That is, Git commands run inside a submodule directory only affect it, not the parent repository, and vice-versa.
+* **Submodule-history**: The ''.git''(repo's data) folder of a sumodule doesn't actually reside within it. It is kept inside the parent repo's ''.git/modules/''
+* **Recognizing a submodule**: Each submodule has a ''.git'' file(not folder) indicating that it is a submodule. The file contains just one line: location of the submodule's history(''.git'' folder) in the parent repo.
+* **Manipulation**: Git commands are context-sensitive! So a command run inside a submodule won't affect the parent, and vice versa.
 
 === Parent repo's behavior ===
-* **Contents of a submodule**: Of course, the submodules working(content) files are placed in the parent folder, as we are using it in our project.
+* **Contents of a submodule**: Obviously, the submodule's working directory lies inside the parent.
 * **Tracking the submodule**: The parent repo ignores(i.e does not track) the contents of a submodule. The parent does note the current revision of a submodule, this is done for integrity(see the next point).
-* **State of a submodule**: Unlike normal Git repositories, Submodules always point to a specific commit - not a branch. This is because the contents of a branch can change over time, as new commits arrive. Pointing at a specific revision, on the other hand, guarantees that the correct code is always present.
+* **State of a submodule**: Unlike normal Git repositories, Submodules always point to a specific commit - not to a branch. This is because the contents of a branch can change over time, as new commits arrive. Pointing at a specific revision, on the other hand, guarantees that the correct code is always present.
 * **Conclusion**: We can have nested repos, without the parent tracking them.
 
 === Details ===
-* A ''.gitmodules'' file is created in the parent, as a signal that the parent contains submodules. It contains 3 things: name, URL and location of the submodules repo's VC data. This is done for each submodule inside the root folder.
-* As said earlier, the ''.git'' content of a submodule is stored in ''.git/modules/my_submodule_name''. The content differs a little from a standalone repo's ''.git''
+* A ''.gitmodules'' file in a repo indicates the presence of submodules. It contains 3 things: name, URL and location of the submodules repo's VC data. This is done for each submodule.
+* As said earlier, the history(''.git'' folder) of a submodule is stored in ''parent_repo/.git/modules/my_submodule_name''. The content differs a little from a standalone repo's ''.git'' folder.
 Enough theory, let's get rid of caveats by doing a practical.
