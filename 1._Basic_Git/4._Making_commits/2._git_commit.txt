@@ -5,7 +5,7 @@ Creation-Date: 2020-11-07T06:58:50+05:30
 ====== 2. git commit ======
 Created Saturday 07 November 2020
 
-=== Commit ===
+===== Commit =====
 * Saving change(s) to the repo is called a commit.
 * 'git commit' is used to save the staged files into the repo. It is similar to taking a snapshot of the project.
 * Note: You files to be commited need to be in the staging area.
@@ -17,13 +17,13 @@ git commit -m "messgae here" # one liner
 }}}
 
 
-=== Tips about committing ===
+===== Tips about committing =====
 1. They must be done regularly
 2. Every commit must have a single focus - number of lines or number of files changed is irrelevant. You can change as many files as you want, as long as changes are for one goal only.
 3. Conversely, a commit shouldn't include unrelated changes - This way, if it turns out that one change had a bug and needs to be undone, you don't have to undo the other unrelated change too.
 Note: Keep the goal of each commit as atomic as possible.
 
-=== Tips for commit messages ===
+===== Tips for commit messages =====
 1. Keep the message short, i.e <=50 chars
 2. Explain what the commit does(not how or why).
 3. Try to not use 'and', as commits should be atomic.
@@ -34,9 +34,9 @@ Note: Keep the goal of each commit as atomic as possible.
 	{{./pasted_image.png}}
 8. BE CONSISTENT
 
-=== Skip staging(for already files in repo) ===
+===== Skip staging(for already files in repo) =====
 * Syntax: ''git commit -a'' or ''git commit -a -m "message here"''.
 * Gotchas:
 	* This works for tracked files only. A file is "tracked" by Git if it has been commited in the past.
-	* You still need to stage untracked files using ''git add''. Untracked files - Files that have been commited.
+	* You still need to stage untracked files using ''git add''. Untracked files - Files that have been commited. FIXME:quick
 	This is the reason why ''git commit -a'' is not equivalent to ''git add -A; git commit'', except for tracked files.

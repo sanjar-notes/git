@@ -5,16 +5,16 @@ Creation-Date: 2020-11-06T11:09:50+05:30
 ====== 1. Creating a repo ======
 Created Friday 06 November 2020
 
-Three commands:
+Three important commands:
 * git ''init'' - makes the current directory a repository.
 * git ''clone'' - copying a repo to local storage from somewhere else, e.g a URL
 * git ''status'' - shows the status of Git, when run inside the working directory
 {{./pasted_image.png}}
 Note: 
-* git init can create a new folder too, if repo_name is provided as argument. This way can skip **mkdir** and **cd** into a new folder.
-* Running git init more than once causes no harm.
+* ''git init'' can create a new folder too, if repo_name is provided as argument. This way you can skip a ''mkdir'' and ''cd''.
+* Running ''git init'' more than once causes no harm.
 --------------------
-Running 'git init' creates a hidden .git directory. This .git directory is the brain/storage centre for the repository. It holds all of the configuration files and directories and is where all of the commits are stored.
+Running ''git init'' creates a hidden ''.git'' directory. This ''.git'' directory is the brain/storage centre for the repository. It holds all of the configuration files and directories and is where all of the commits are stored.
 --------------------
 
 === ''.git'' directory contents ===

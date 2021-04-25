@@ -9,12 +9,12 @@ Created Sunday 08 November 2020
 * When a merge conflict occurs, Git still merges the parts it can, leaving behind specially marked regions in the problematic files (e.g. >>> and <<<) that indicate locations which need manual fixing.
 * If a merge is aborted, the marked regions are erased.
 
-===== What causes a Merge Conflict =====
+=== What causes a Merge Conflict ===
 As we know, Git tracks lines in files. A merge conflict will happen when the same line(s) are changed in separate branches. 
 Suppose for the same file(s) on different branches, we have print("hello") one line 97, and print("hello there") on line 97 on the other branch. There's no way for Git to decide which to keep.
 We need to decide what to keep, and make the problematic lines same in both branches.
 
-===== Forcing a Merge Conflict =====
+=== Create a Merge Conflict(for demo) ===
 * Make a new branch.
 * Change a line on a file in this new branch.
 * Make sure the changes are committed in both branches.
@@ -23,13 +23,13 @@ We need to decide what to keep, and make the problematic lines same in both bran
 {{./pasted_image001.png}}
 {{./pasted_image.png}}
 
-===== Merge Conflict Indicator Explained =====
-* **<<<<<<< __MERGEE__** - Name of the mergee branch. Everything below this line (until the next indicator) indicates code on the current branch(the mergee).
-* **|||||||**  - **__LEAST COMMON COMMIT__** SHA_ID. Everything below this line (until the next indicator) is the code which was in the least common commit.
+=== Merge Conflict Indicator Explained ===
+* **<<<<<<< ''current_branch''** - change to be made.
+* **|||||||** - **''LEAST COMMON COMMIT''** SHA_ID. Most(branchwise) common code.
 * **=======** - everything below this line (until the next indicator) shows you what's on the other branch(the merger).
-* **>>>>>>> __MERGER__ **- Name of the merger branch. End of merge conflict indicator.
+* **>>>>>>> ''destination_branch'' **- Name of the merger branch. End of merge conflict indicator.
 
-===== Resolve a merge conflict =====
+=== Resolve a merge conflict ===
 * During a merge, there's only one branch receiving the change(from which merge is invoked). So merge conflict indicators appear only files of the 'mergee' branch. 
 * Locate and remove all lines from the merge conflict indicator text.
 * Decide what code to keep.
