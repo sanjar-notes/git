@@ -1,8 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.6
-Creation-Date: 2020-11-07T06:25:19+05:30
-
-====== 4. Making commits ======
-Created Saturday 07 November 2020
-
-[[../_udacity-git-course/new-git-project]]
